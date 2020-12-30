@@ -2,7 +2,7 @@
 
 This is a task of object detection with [Global Wheat Head dataset](https://www.kaggle.com/c/global-wheat-detection). It contains a set of outdoor images of wheat plants around the world. There are 3,422 training images and  about 1,000 test images. In training time, we divide the training set into 5 fold, 4 for training and 1 for validation. Use [YOLOv5](https://github.com/ultralytics/yolov5) model from GitHub and train with pretrained checkpoint. The highest testing mAP can reach 75.38% in public LB and 65.75% in private LB.
 
-# Reproducing Submission
+## Reproducing Submission
 1. [Installation](#Installation)
 2. [Dataset Configuration](#Dataset-Configuration)
 3. [Training](#Training) 
@@ -10,7 +10,7 @@ This is a task of object detection with [Global Wheat Head dataset](https://www.
 
 To reproduct my submission without retrainig, you can see [Submission](#Submission) section directly.
 
-# Installation
+## Installation
 1. Clone this repository. 
 ```
 git clone https://github.com/Yunyung/Global-Wheat-Detection-Competition
@@ -32,9 +32,7 @@ pip install -r requirements.txt
 ```
 
 
-
-
-# Dataset Configuration
+## Dataset Configuration
 To train [Global Wheat Head dataset](https://www.kaggle.com/c/global-wheat-detection) Dataset on YOLOv5, we need to set up the configuration for it.
 1. Download dataset from [Kaggle](https://www.kaggle.com/c/global-wheat-detection/data).
 2. Unzip the data files and set the data directory structure as:
@@ -71,12 +69,11 @@ Global-Wheat-Detection-Competition
 python parse_data.py
 ``` 
 
-# Training
+## Training
 
 ### Train
 Training command:
 ```
-cd yolov5
 python train.py --img 1024 --batch 4 --epochs 100 --data ../config/wheat0.yaml --cfg ../config/yolov5x.yaml --weights yolov5x.pt --name yolo5x
 ```
 If your GPUs are out of memory, please decrease batch size or change to smaller model like yolov51, yolov5m or yolov5s. The way of changing configuration setting is simlar to yolov5x, please check [Model Configuration](#Model-Configuration) section above.
@@ -107,7 +104,7 @@ You can edit ```yolov5/data/hyp.scratch.yaml``` for changing augmentation parame
 You can edit ```yolov5/data/hyp.scratch.yaml``` for changing some hyperparameters and some need to specify at training time.
 
 
-# Submission
+## Submission
 To repoduce the result on Kaggle without training , please follow the steps below:
 1. New a notebook on Kaggle.
 2. Choose File/upload to upload the submission notebook ```yolov5-wheat-detection-2-stage-PL.ipynb``` .
@@ -120,7 +117,19 @@ To repoduce the result on Kaggle without training , please follow the steps belo
 6. Submit the notebook.
 
 If you have trained your own weights, you need to upload your weights, and change the path of the .pt file.
-# Reference
+
+## Result
+
+Kaggle Public/Private leaderboard on Kaggle
+| **Methold**  | Public | Private |
+| -------- | -------- | -------- |
+| YOLOv5 (Baseline)   | 0.7016| 0.5977     |
+| YOLOv5 + WBF     | 0.7219     | 0.6258     |
+| YOLOv5 + WBF + TTA     | 0.7345     | 0.6444     |
+| YOLOv5 + WBF + TTA + PL     | 0.7478     | 0.6495     |
+| YOLOv5 + WBF + TTA + 2-stage PL     | 0.7538     | 0.6576     |
+
+## Reference
 *	ultralytics, yolov5, viewed 25 Nov 2020, [https://github.com/ultralytics/yolov5](https://github.com/ultralytics/yolov5)
 *    nvnn, YOLOv5 Pseudo Labeling, viewed 28 Dec 2020 , https://www.kaggle.com/nvnnghia/yolov5-pseudo-labeling?fbclid=IwAR0OlK0DmXEy2wCLR0MWiuUZ0exbrCOt7b4b6WdJwaQqyqNhLaBT63y7yPk
 
