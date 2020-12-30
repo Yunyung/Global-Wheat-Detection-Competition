@@ -76,6 +76,7 @@ python parse_data.py
 ### Train
 Training command:
 ```
+cd yolov5
 python train.py --img 1024 --batch 4 --epochs 100 --data ../config/wheat0.yaml --cfg ../config/yolov5x.yaml --weights yolov5x.pt --name yolo5x
 ```
 If your GPUs are out of memory, please decrease batch size or change to smaller model like yolov51, yolov5m or yolov5s. The way of changing configuration setting is simlar to yolov5x, please check [Model Configuration](#Model-Configuration) section above.
