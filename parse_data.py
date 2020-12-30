@@ -4,7 +4,7 @@ import os
 from tqdm.auto import tqdm
 import shutil as sh
 
-ddf = pd.read_csv('global-wheat-detection/train.csv')
+df = pd.read_csv('global-wheat-detection/train.csv')
 bboxs = np.stack(df['bbox'].apply(lambda x: np.fromstring(x[1:-1], sep=',')))
 for i, column in enumerate(['x', 'y', 'w', 'h']):
     df[column] = bboxs[:,i]
